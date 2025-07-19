@@ -1,0 +1,72 @@
+version: '3.8'
+services:
+  stockbot-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: stockbot-app
+    restart: unless-stopped
+    ports:
+      - '3336:3000'
+    depends_on:
+      - stockbot-db
+    networks:
+      - stockbot-net
+    volumes:
+      - .:/app
+      - ./logs:/app/logs
+      - ./cache:/app/cache
+      - /tmp:/tmp # Cho matplotlib charts
+    env_file:
+      - .env
+    environment:
+      - DATABASE_HOST=stockbot-db
+      - DATABASE_PORT=5432
+      - DATABASE_USER=postgres
+      - DATABASE_PASS=postgres
+      - DATABASE_DB_NAME=stockbot
+      - PYTHONPATH=/app
+      - PYTHONUNBUFFERED=1
+      - TG_TOKEN=${TG_TOKEN}
+    healthcheck:
+      test: ['CMD', 'python', '-c', 'import sys; sys.exit(0)']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+        reservations:
+          memory: 512M
+
+  stockbot-db:
+    image: postgres:15
+    container_name: stockbot-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: stockbot
+    ports:
+      - '5432:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - stockbot-net
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  stockbot-net:
+    driver: bridge
+
+volumes:
+  pgdata:
+  cache:
+    driver: local

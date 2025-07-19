@@ -1,0 +1,8 @@
+python-telegram-bot==20.0
+vnstock
+SQLAlchemy
+psycopg2-binary
+pandas
+python-dotenv 
+watchdog 
+watchfiles 
