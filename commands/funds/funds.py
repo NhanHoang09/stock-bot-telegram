@@ -61,7 +61,7 @@ async def fund_detail(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
         fund_symbol = context.args[0].upper()
         from vnstock import Trading, Listing
-        trading = Trading(source='VCI')
+        trading = Trading(source='TCBS')
         listing = Listing()
         
         # Lấy thông tin giá quỹ
@@ -165,7 +165,7 @@ async def fund_performance(update: Update, context: ContextTypes.DEFAULT_TYPE):
         days = int(context.args[1]) if len(context.args) > 1 else 30
         
         from vnstock import Vnstock
-        stock = Vnstock().stock(symbol=fund_symbol, source='VCI')
+        stock = Vnstock().stock(symbol=fund_symbol, source='TCBS')
         
         # Tính ngày bắt đầu
         from datetime import datetime, timedelta
@@ -267,7 +267,7 @@ async def fund_compare(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
         fund_symbols = [fund.upper() for fund in context.args]
         from vnstock import Trading
-        trading = Trading(source='VCI')
+        trading = Trading(source='TCBS')
         
         # Lấy dữ liệu các quỹ
         fund_data = trading.price_board(fund_symbols)
@@ -385,7 +385,7 @@ async def fund_ranking(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
         from vnstock import Listing, Trading
         listing = Listing()
-        trading = Trading(source='VCI')
+        trading = Trading(source='TCBS')
         
         reply = "🏆 <b>XẾP HẠNG QUỸ ĐẦU TƯ:</b>\n\n"
         

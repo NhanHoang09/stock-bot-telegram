@@ -24,24 +24,30 @@ async def help(update: Update, context: ContextTypes.DEFAULT_TYPE):
     reply_markup = InlineKeyboardMarkup(keyboard)
     
     help_text = """
-🤖 <b>STOCK BOT - HƯỚNG DẪN SỬ DỤNG</b>
+🤖 <b>STOCK BOT - USER GUIDE</b>
 
-Chào mừng bạn đến với Stock Bot! 🎉
+Welcome to Stock Bot! 🎉
 
-📋 <b>COMMANDS CƠ BẢN:</b>
-• <code>/start</code> - Khởi tạo bot
-• <code>/help</code> - Hướng dẫn này
+📋 <b>BASIC COMMANDS:</b>
+• <code>/start</code> - Start the bot
+• <code>/help</code> - This help menu
+• <code>/ta_technical</code> - Technical analysis indicators (see below)
 
-💡 <b>Chọn danh mục bên dưới để xem chi tiết:</b>
+💡 <b>Select a category below for details:</b>
 
-📊 <b>Cổ phiếu & ETF</b> - Giá cổ phiếu, thông tin, biểu đồ
-📈 <b>Thị trường</b> - Chỉ số, top cổ phiếu, ngành nghề  
-💰 <b>Quỹ đầu tư</b> - ETF, quỹ mở, hiệu suất
-📰 <b>Tin tức</b> - Tin tức, sự kiện, công bố
-🔍 <b>Bộ lọc</b> - Lọc cổ phiếu theo tiêu chí
-🥇 <b>Hàng hóa</b> - Vàng, kim loại, nguyên liệu
+📊 <b>Stocks & ETF</b> - Stock prices, info, charts
+📈 <b>Market</b> - Indices, top stocks, sectors
+💰 <b>Funds</b> - ETF, open funds, performance
+📰 <b>News</b> - News, events, announcements
+🔍 <b>Filter</b> - Stock screening
+🥇 <b>Commodities</b> - Gold, metals, raw materials
 
-🔗 <b>LIÊN HỆ:</b> @nhanhoang09
+<b>Technical Analysis:</b>
+• <code>/ta_technical &lt;symbol&gt; [start_date] [end_date]</code>
+  Returns key technical indicators (RSI, MACD, EMA, etc.) for the given stock symbol and date range.
+  Example: <code>/ta_technical VNM 2023-01-01 2023-12-31</code>
+
+🔗 <b>CONTACT:</b> @nhanhoang09
 """
     
     await update.message.reply_text(help_text, parse_mode='HTML', reply_markup=reply_markup)
@@ -91,24 +97,30 @@ async def show_main_help(query):
     reply_markup = InlineKeyboardMarkup(keyboard)
     
     help_text = """
-🤖 <b>STOCK BOT - HƯỚNG DẪN SỬ DỤNG</b>
+🤖 <b>STOCK BOT - USER GUIDE</b>
 
-Chào mừng bạn đến với Stock Bot! 🎉
+Welcome to Stock Bot! 🎉
 
-📋 <b>COMMANDS CƠ BẢN:</b>
-• <code>/start</code> - Khởi tạo bot
-• <code>/help</code> - Hướng dẫn này
+📋 <b>BASIC COMMANDS:</b>
+• <code>/start</code> - Start the bot
+• <code>/help</code> - This help menu
+• <code>/ta_technical</code> - Technical analysis indicators (see below)
 
-💡 <b>Chọn danh mục bên dưới để xem chi tiết:</b>
+💡 <b>Select a category below for details:</b>
 
-📊 <b>Cổ phiếu & ETF</b> - Giá cổ phiếu, thông tin, biểu đồ
-📈 <b>Thị trường</b> - Chỉ số, top cổ phiếu, ngành nghề  
-💰 <b>Quỹ đầu tư</b> - ETF, quỹ mở, hiệu suất
-📰 <b>Tin tức</b> - Tin tức, sự kiện, công bố
-🔍 <b>Bộ lọc</b> - Lọc cổ phiếu theo tiêu chí
-🥇 <b>Hàng hóa</b> - Vàng, kim loại, nguyên liệu
+📊 <b>Stocks & ETF</b> - Stock prices, info, charts
+📈 <b>Market</b> - Indices, top stocks, sectors
+💰 <b>Funds</b> - ETF, open funds, performance
+📰 <b>News</b> - News, events, announcements
+🔍 <b>Filter</b> - Stock screening
+🥇 <b>Commodities</b> - Gold, metals, raw materials
 
-🔗 <b>LIÊN HỆ:</b> @nhanhoang09
+<b>Technical Analysis:</b>
+• <code>/ta_technical &lt;symbol&gt; [start_date] [end_date]</code>
+  Returns key technical indicators (RSI, MACD, EMA, etc.) for the given stock symbol and date range.
+  Example: <code>/ta_technical VNM 2023-01-01 2023-12-31</code>
+
+🔗 <b>CONTACT:</b> @nhanhoang09
 """
     
     await query.edit_message_text(help_text, parse_mode='HTML', reply_markup=reply_markup)
@@ -121,43 +133,45 @@ async def show_stock_help(query):
     reply_markup = InlineKeyboardMarkup(keyboard)
     
     text = """
-📊 <b>GIÁ CỔ PHIẾU & ETF</b>
+📊 <b>STOCKS & ETF</b>
 
 🔹 <b>/stock &lt;symbol&gt;</b>
-   Giá hiện tại cổ phiếu
-   Ví dụ: <code>/stock VNM</code>
+   Get current stock price
+   Example: <code>/stock VNM</code>
 
 🔹 <b>/stock info &lt;symbol&gt;</b>
-   Thông tin chi tiết cổ phiếu
-   Ví dụ: <code>/stock info VNM</code>
+   Full company info, financials, real-time trading, overview
+   Example: <code>/stock info VNM</code>
+   
+   <b>Returned info includes:</b>
+   • Basic info: Name, exchange, type, industry, website
+   • Overview: Charter capital, shares, year, shareholders, employees, rating, short name, industry code
+   • Financials: P/E, P/B, ROE, ROA, EPS, BVPS, Market Cap (if available)
+   • Realtime trading: Price, volume, 1Y high/low
 
 🔹 <b>/realtime &lt;symbol1&gt; &lt;symbol2&gt; ...</b>
-   Giá thời gian thực (nhiều mã)
-   Ví dụ: <code>/realtime VNM FPT VIC</code>
+   Real-time prices for multiple stocks
+   Example: <code>/realtime VNM FPT VIC</code>
 
 🔹 <b>/history &lt;symbol&gt; &lt;years&gt; [time_range]</b>
-   Lịch sử giá với biểu đồ và thống kê chi tiết
+   Price history with chart and statistics
    
-   <b>Cách sử dụng:</b>
-   • <code>/history VNM 2</code> - 2 năm gần nhất
-   • <code>/history VNM 2 2021-2023</code> - Từ 2021-2023
-   • <code>/history VNM 2 2021-01-01-2023-12-31</code> - Ngày cụ thể
+   <b>Usage:</b>
+   • <code>/history VNM 2</code> - Last 2 years
+   • <code>/history VNM 2 2021-2023</code> - From 2021-2023
+   • <code>/history VNM 2 2021-01-01-2023-12-31</code> - Specific dates
    
-   <b>Kết quả:</b> Biểu đồ + Thống kê theo năm/tháng + CSV
-
-🔹 <b>/company &lt;symbol&gt;</b>
-   Thông tin doanh nghiệp
-   Ví dụ: <code>/company VNM</code>
+   <b>Result:</b> Chart + Year/month stats + CSV
 
 🔹 <b>/financial &lt;symbol&gt;</b>
-   Chỉ số tài chính (P/E, ROE...)
-   Ví dụ: <code>/financial VNM</code>
+   Financial ratios (P/E, ROE...)
+   Example: <code>/financial VNM</code>
 
 📊 <b>ETF:</b>
 
-🔹 <b>/etf</b> - Danh sách ETF
-🔹 <b>/etf &lt;symbol&gt;</b> - Giá ETF
-🔹 <b>/etf info &lt;symbol&gt;</b> - Thông tin ETF
+🔹 <b>/etf</b> - List ETF
+🔹 <b>/etf &lt;symbol&gt;</b> - ETF price
+🔹 <b>/etf info &lt;symbol&gt;</b> - ETF info
 """
     
     await query.edit_message_text(text, parse_mode='HTML', reply_markup=reply_markup)
@@ -350,18 +364,23 @@ async def show_all_help(query):
     reply_markup = InlineKeyboardMarkup(keyboard)
     
     text = """
-📋 <b>TẤT CẢ COMMANDS</b>
+📋 <b>ALL COMMANDS</b>
 
-💡 <b>Chọn danh mục bên dưới để xem chi tiết:</b>
+💡 <b>Select a category below for details:</b>
 
-📊 <b>Cổ phiếu & ETF</b> - Giá cổ phiếu, thông tin, biểu đồ
-📈 <b>Thị trường</b> - Chỉ số, top cổ phiếu, ngành nghề  
-💰 <b>Quỹ đầu tư</b> - ETF, quỹ mở, hiệu suất
-📰 <b>Tin tức</b> - Tin tức, sự kiện, công bố
-🔍 <b>Bộ lọc</b> - Lọc cổ phiếu theo tiêu chí
-🥇 <b>Hàng hóa</b> - Vàng, kim loại, nguyên liệu
+📊 <b>Stocks & ETF</b> - Stock prices, info, charts
+📈 <b>Market</b> - Indices, top stocks, sectors
+💰 <b>Funds</b> - ETF, open funds, performance
+📰 <b>News</b> - News, events, announcements
+🔍 <b>Filter</b> - Stock screening
+🥇 <b>Commodities</b> - Gold, metals, raw materials
 
-🔗 <b>LIÊN HỆ:</b> @nhanhoang09
+<b>Technical Analysis:</b>
+• <code>/ta_technical &lt;symbol&gt; [start_date] [end_date]</code>
+  Returns key technical indicators (RSI, MACD, EMA, etc.) for the given stock symbol and date range.
+  Example: <code>/ta_technical VNM 2023-01-01 2023-12-31</code>
+
+🔗 <b>CONTACT:</b> @nhanhoang09
 """
     
     await query.edit_message_text(text, parse_mode='HTML', reply_markup=reply_markup) 

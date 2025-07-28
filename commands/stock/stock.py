@@ -5,67 +5,68 @@ from datetime import datetime
 from utils.formatters import format_vnd
 from utils.stock_info import get_full_stock_info
 from utils.loading import (
-    show_animated_loading, 
-    update_loading_with_stock_animation, 
-    update_loading_with_money_animation,
     finish_loading, 
     finish_loading_with_error
 )
 
-# Import database models
 try:
     from entities.coin_price.entity import StockPrice
     from entities.index import SessionLocal
 except ImportError:
-    # Fallback nếu không có database
     StockPrice = None
     SessionLocal = None
 
 async def stock(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not context.args:
-        await update.message.reply_text("Vui lòng nhập lệnh đúng: /stock <symbol> hoặc /stock info <symbol>")
+        await update.message.reply_text("Please use: /stock <symbol> or /stock info <symbol>")
         return
     
-    if context.args[0].lower() == "info" and len(context.args) > 1:
+    if context.args[0].lower() == "info":
+        if len(context.args) <= 1:
+            await update.message.reply_text("Please provide a stock symbol. Example: /stock info VNM")
+            return
         symbol = context.args[1].upper()
-        
-        # Hiển thị loading động
-        loading_msg = await show_animated_loading(update, context, f"Đang tìm thông tin chi tiết cho {symbol}...")
-        
         try:
-            info = await get_full_stock_info(symbol, debug_raw=True, update=update)
+            info = await get_full_stock_info(symbol, debug_raw=False, update=update)
             if info:
-                await finish_loading(loading_msg, info)
+                await update.message.reply_text(info, parse_mode='HTML')
             else:
-                await finish_loading_with_error(loading_msg, "Không tìm thấy thông tin công ty cho mã này.")
+                await update.message.reply_text(f"No company information found for symbol: {symbol}")
         except Exception as e:
-            await finish_loading_with_error(loading_msg, f"Có lỗi xảy ra: {e}")
+            await update.message.reply_text(f"Error: {e}")
         return
     
     symbol = context.args[0].upper()
-    
-    # Hiển thị loading động
-    loading_msg = await show_animated_loading(update, context, f"Đang tìm giá cổ phiếu {symbol}...")
+    loading_msg = await update.message.reply_text("⏳ Fetching data, please wait...", parse_mode='HTML')
     
     try:
         from vnstock import Trading
-        
-        # Cập nhật loading với animation cổ phiếu
-        await update_loading_with_stock_animation(loading_msg, f"Đang lấy dữ liệu từ sàn giao dịch...", 1)
-        
-        prices = Trading(source='VCI').price_board([symbol])
+        prices = Trading(source='TCBS').price_board([symbol])
         if prices.empty:
-            await finish_loading_with_error(loading_msg, f"Không tìm thấy mã chứng khoán {symbol}")
+            await finish_loading_with_error(loading_msg, f"No stock found for symbol {symbol}")
             return
-        
-        # Cập nhật loading với animation tiền tệ
-        await update_loading_with_money_animation(loading_msg, f"Đang lưu dữ liệu...", 2)
-        
-        price = float(prices.iloc[0][('match', 'match_price')])
+        # Try to extract price from possible columns
+        price = None
+        possible_columns = ['match_price', 'price', 'close', 'Giá']
+        for col in possible_columns:
+            if col in prices.columns:
+                price = float(prices.iloc[0][col])
+                break
+        if price is None:
+            # Try to find the first float column
+            for col in prices.columns:
+                val = prices.iloc[0][col]
+                try:
+                    price = float(val)
+                    break
+                except Exception:
+                    continue
+        if price is None:
+            print('DEBUG: prices.columns =', prices.columns)
+            await finish_loading_with_error(loading_msg, f"Could not extract price from columns: {list(prices.columns)}")
+            return
         formatted_price = format_vnd(price)
-        reply = f"💹 Giá hiện tại của <b>{symbol}</b>: <b>{formatted_price}₫</b> 🇻🇳"
-        
-        # Lưu vào database nếu có
+        reply = f"💹 Current price of <b>{symbol}</b>: <b>{formatted_price}₫</b> 🇻🇳"
         if StockPrice and SessionLocal:
             session = SessionLocal()
             try:
@@ -76,9 +77,7 @@ async def stock(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 print(f"Database error: {e}")
             finally:
                 session.close()
-        
         await finish_loading(loading_msg, reply)
-        
     except Exception as e:
-        await finish_loading_with_error(loading_msg, f"Có lỗi xảy ra: {e}")
+        await finish_loading_with_error(loading_msg, f"Error: {e}")
 

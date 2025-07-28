@@ -1,0 +1,402 @@
+<mxfile host="app.diagrams.net" modified="2024-01-15T10:00:00.000Z" agent="5.0" etag="xxx" version="22.1.16" type="device">
+  <diagram name="Stock Bot Flow Chart" id="stock-bot-flowchart">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Title -->
+        <mxCell id="title" value="Stock Bot Command Flow Chart" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=28;fontStyle=1;fontColor=#1f4e79;" vertex="1" parent="1">
+          <mxGeometry x="500" y="20" width="400" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- Start -->
+        <mxCell id="start" value="START" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="650" y="80" width="100" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- User Input -->
+        <mxCell id="user-input" value="User sends command&#xa;/company VNM&#xa;/stock VNM&#xa;/financial VNM" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="180" width="200" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- Command Parser -->
+        <mxCell id="command-parser" value="Command Parser&#xa;Extract command type&#xa;and symbol" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="600" y="300" width="200" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Command Router -->
+        <mxCell id="command-router" value="Command Router&#xa;Route to specific handler" style="diamond;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="600" y="400" width="200" height="100" as="geometry" />
+        </mxCell>
+        
+        <!-- Company Command -->
+        <mxCell id="company-command" value="COMPANY COMMAND&#xa;/company &lt;symbol&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="450" width="180" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Stock Command -->
+        <mxCell id="stock-command" value="STOCK COMMAND&#xa;/stock &lt;symbol&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="550" width="180" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Financial Command -->
+        <mxCell id="financial-command" value="FINANCIAL COMMAND&#xa;/financial &lt;symbol&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="450" width="180" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Loading Animation Start -->
+        <mxCell id="loading-start" value="Show Loading Animation&#xa;Spinner with message" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="100" y="550" width="180" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="loading-start2" value="Show Loading Animation&#xa;Spinner with message" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="600" y="650" width="180" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="loading-start3" value="Show Loading Animation&#xa;Spinner with message" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="550" width="180" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- VNStock Classes -->
+        <mxCell id="company-class" value="Company Class&#xa;from vnstock import Company&#xa;&#xa;Methods:&#xa;• company.overview()&#xa;• company.financial_ratio()&#xa;• company.balance_sheet()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="50" y="650" width="280" height="100" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="trading-class" value="Trading Class&#xa;from vnstock import Trading&#xa;&#xa;Methods:&#xa;• trading.price_board([symbol])&#xa;• trading.intraday_data(symbol)&#xa;• trading.historical_data(symbol)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="550" y="750" width="280" height="100" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="finance-class" value="Finance Class&#xa;from vnstock import Finance&#xa;&#xa;Methods:&#xa;• finance.ratio()&#xa;• finance.income_statement()&#xa;• finance.balance_sheet()&#xa;• finance.cash_flow()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="650" width="280" height="100" as="geometry" />
+        </mxCell>
+        
+        <!-- Data Processing -->
+        <mxCell id="company-process" value="Process Company Data&#xa;• Basic info&#xa;• Overview&#xa;• Financial ratios&#xa;• Trading data" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6f3ff;strokeColor=#007acc;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="50" y="800" width="280" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="stock-process" value="Process Stock Data&#xa;• Current price&#xa;• Price change&#xa;• Volume&#xa;• High/Low" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6f3ff;strokeColor=#007acc;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="550" y="900" width="280" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="financial-process" value="Process Financial Data&#xa;• P/E, P/B ratios&#xa;• Income statement&#xa;• Balance sheet&#xa;• Cash flow" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6f3ff;strokeColor=#007acc;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="800" width="280" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- Database Storage -->
+        <mxCell id="db-storage" value="Database Storage&#xa;SQLite Database&#xa;• User records&#xa;• Stock price history&#xa;• Transaction logs" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="750" width="200" height="100" as="geometry" />
+        </mxCell>
+        
+        <!-- Response Formatting -->
+        <mxCell id="format-response" value="Format Response&#xa;• HTML formatting&#xa;• Emoji icons&#xa;• Currency formatting&#xa;• Number formatting" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="600" y="1020" width="200" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- Send Response -->
+        <mxCell id="send-response" value="Send Response to User&#xa;via Telegram Bot API" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="1140" width="200" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- End -->
+        <mxCell id="end" value="END" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="650" y="1240" width="100" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Flow Arrows -->
+        <mxCell id="arrow1" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#1f4e79;" edge="1" parent="1" source="start" target="user-input">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="700" y="140" as="sourcePoint" />
+            <mxPoint x="700" y="180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="arrow2" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#1f4e79;" edge="1" parent="1" source="user-input" target="command-parser">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="700" y="260" as="sourcePoint" />
+            <mxPoint x="700" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="arrow3" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#1f4e79;" edge="1" parent="1" source="command-parser" target="command-router">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="700" y="360" as="sourcePoint" />
+            <mxPoint x="700" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="arrow4" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#1f4e79;" edge="1" parent="1" source="command-router" target="company-command">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="600" y="450" as="sourcePoint" />
+            <mxPoint x="280" y="480" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="arrow5" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#1f4e79;" edge="1" parent="1" source="command-router" target="stock-command">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="700" y="500" as="sourcePoint" />
+            <mxPoint x="690" y="550" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="arrow6" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#1f4e79;" edge="1" parent="1" source="command-router" target="financial-command">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="800" y="450" as="sourcePoint" />
+            <mxPoint x="1100" y="480" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="arrow7" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#1f4e79;" edge="1" parent="1" source="company-command" target="loading-start">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="190" y="510" as="sourcePoint" />
+            <mxPoint x="190" y="550" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="arrow8" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#1f4e79;" edge="1" parent="1" source="stock-command" target="loading-start2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="690" y="610" as="sourcePoint" />
+            <mxPoint x="690" y="650" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="arrow9" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#1f4e79;" edge="1" parent="1" source="financial-command" target="loading-start3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1190" y="510" as="sourcePoint" />
+            <mxPoint x="1190" y="550" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="arrow10" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#82b366;" edge="1" parent="1" source="loading-start" target="company-class">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="190" y="600" as="sourcePoint" />
+            <mxPoint x="190" y="650" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="arrow11" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#82b366;" edge="1" parent="1" source="loading-start2" target="trading-class">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="690" y="700" as="sourcePoint" />
+            <mxPoint x="690" y="750" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="arrow12" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#82b366;" edge="1" parent="1" source="loading-start3" target="finance-class">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1190" y="600" as="sourcePoint" />
+            <mxPoint x="1190" y="650" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="arrow13" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#007acc;" edge="1" parent="1" source="company-class" target="company-process">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="190" y="750" as="sourcePoint" />
+            <mxPoint x="190" y="800" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="arrow14" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#007acc;" edge="1" parent="1" source="trading-class" target="stock-process">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="690" y="850" as="sourcePoint" />
+            <mxPoint x="690" y="900" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="arrow15" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#007acc;" edge="1" parent="1" source="finance-class" target="financial-process">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1190" y="750" as="sourcePoint" />
+            <mxPoint x="1190" y="800" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="arrow16" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#b85450;" edge="1" parent="1" source="company-process" target="db-storage">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="330" y="840" as="sourcePoint" />
+            <mxPoint x="1200" y="800" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="arrow17" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#b85450;" edge="1" parent="1" source="stock-process" target="db-storage">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="830" y="940" as="sourcePoint" />
+            <mxPoint x="1200" y="800" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="arrow18" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#b85450;" edge="1" parent="1" source="financial-process" target="db-storage">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1330" y="840" as="sourcePoint" />
+            <mxPoint x="1300" y="800" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="arrow19" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#d6b656;" edge="1" parent="1" source="company-process" target="format-response">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="330" y="840" as="sourcePoint" />
+            <mxPoint x="600" y="1020" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="arrow20" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#d6b656;" edge="1" parent="1" source="stock-process" target="format-response">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="830" y="940" as="sourcePoint" />
+            <mxPoint x="700" y="1020" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="arrow21" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#d6b656;" edge="1" parent="1" source="financial-process" target="format-response">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1330" y="840" as="sourcePoint" />
+            <mxPoint x="800" y="1020" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="arrow22" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#9673a6;" edge="1" parent="1" source="format-response" target="send-response">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="700" y="1100" as="sourcePoint" />
+            <mxPoint x="700" y="1140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="arrow23" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#82b366;" edge="1" parent="1" source="send-response" target="end">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="700" y="1200" as="sourcePoint" />
+            <mxPoint x="700" y="1240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Command Details Table -->
+        <mxCell id="table-title" value="COMMAND DETAILS &amp; VNSTOCK CLASSES" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#1f4e79;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1350" width="1300" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- Table Headers -->
+        <mxCell id="header1" value="Command" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1f4e79;strokeColor=#1f4e79;fontColor=#ffffff;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1400" width="200" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="header2" value="VNStock Class" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1f4e79;strokeColor=#1f4e79;fontColor=#ffffff;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="1400" width="200" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="header3" value="Methods Used" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1f4e79;strokeColor=#1f4e79;fontColor=#ffffff;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="450" y="1400" width="300" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="header4" value="Data Retrieved" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1f4e79;strokeColor=#1f4e79;fontColor=#ffffff;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="750" y="1400" width="300" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="header5" value="Output Format" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1f4e79;strokeColor=#1f4e79;fontColor=#ffffff;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="1400" width="300" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- Company Row -->
+        <mxCell id="company-row1" value="/company VNM" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1440" width="200" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="company-row2" value="Company" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="250" y="1440" width="200" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="company-row3" value="• company.overview()&#xa;• company.financial_ratio()&#xa;• company.balance_sheet()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="450" y="1440" width="300" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="company-row4" value="• Basic company info&#xa;• Financial overview&#xa;• Trading data&#xa;• Company ratios" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6f3ff;strokeColor=#007acc;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="750" y="1440" width="300" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="company-row5" value="• Company name &amp; info&#xa;• Financial ratios&#xa;• Current trading data&#xa;• Formatted with emojis" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="1440" width="300" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Stock Row -->
+        <mxCell id="stock-row1" value="/stock VNM" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1500" width="200" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="stock-row2" value="Trading" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="250" y="1500" width="200" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="stock-row3" value="• trading.price_board([symbol])&#xa;• trading.intraday_data(symbol)&#xa;• trading.historical_data(symbol)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="450" y="1500" width="300" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="stock-row4" value="• Current stock price&#xa;• Price change &amp; %&#xa;• Trading volume&#xa;• High/Low prices" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6f3ff;strokeColor=#007acc;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="750" y="1500" width="300" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="stock-row5" value="• Current price display&#xa;• Price change indicator&#xa;• Volume information&#xa;• Currency formatting" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="1500" width="300" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Financial Row -->
+        <mxCell id="financial-row1" value="/financial VNM" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1560" width="200" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="financial-row2" value="Finance" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="250" y="1560" width="200" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="financial-row3" value="• finance.ratio()&#xa;• finance.income_statement()&#xa;• finance.balance_sheet()&#xa;• finance.cash_flow()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="450" y="1560" width="300" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="financial-row4" value="• P/E, P/B, ROE, ROA&#xa;• Revenue &amp; profit data&#xa;• Assets &amp; liabilities&#xa;• Cash flow statements" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6f3ff;strokeColor=#007acc;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="750" y="1560" width="300" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="financial-row5" value="• Financial ratios table&#xa;• Income statement summary&#xa;• Balance sheet overview&#xa;• Cash flow highlights" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="1560" width="300" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Legend -->
+        <mxCell id="legend-title" value="FLOW CHART LEGEND" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;fontColor=#1f4e79;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1650" width="200" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend1" value="Green: Start/End points" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1690" width="150" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend2" value="Purple: User interaction" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1710" width="150" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend3" value="Yellow: Processing logic" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1730" width="150" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend4" value="Blue: Decision points" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1750" width="150" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend5" value="Red: Commands" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1770" width="150" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend6" value="Orange: Loading animation" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1790" width="150" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend7" value="Light Green: VNStock classes" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1810" width="150" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend8" value="Light Blue: Data processing" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#007acc;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1830" width="150" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend9" value="Cylinder: Database" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1850" width="150" height="20" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile> 

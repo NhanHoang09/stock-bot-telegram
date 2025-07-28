@@ -18,7 +18,7 @@ async def etf(update: Update, context: ContextTypes.DEFAULT_TYPE):
         symbol = context.args[0].upper()
         try:
             from vnstock import Trading
-            prices = Trading(source='VCI').price_board([symbol])
+            prices = Trading(source='TCBS').price_board([symbol])
             if prices.empty:
                 await update.message.reply_text(f"Không tìm thấy mã ETF {symbol}")
                 return

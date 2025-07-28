@@ -11,7 +11,7 @@ async def history(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not context.args:
         await update.message.reply_text(
             "📊 <b>CÁCH SỬ DỤNG LỆNH HISTORY:</b>\n\n"
-            "1️⃣ <b>Xem theo số năm gần nhất:</b>\n"
+            "1️⃣ <b>Xem theo số năn gần nhất:</b>\n"
             "   /history <symbol> <years>\n"
             "   Ví dụ: /history VNM 2\n\n"
             "2️⃣ <b>Xem theo khoảng thời gian cụ thể:</b>\n"
@@ -69,7 +69,7 @@ async def history(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     try:
         from vnstock import Vnstock
-        stock = Vnstock().stock(symbol=symbol, source='VCI')
+        stock = Vnstock().stock(symbol=symbol, source='TCBS')
         df = stock.quote.history(start=start_str, end=end_str, interval='1D')
         if df.empty:
             await update.message.reply_text(f"❌ Không có dữ liệu lịch sử cho mã {symbol} trong khoảng thời gian {start_str} - {end_str}.")
@@ -171,48 +171,45 @@ async def history(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(stats_text, parse_mode='HTML')
         
         # === VẼ BIỂU ĐỒ CẢI THIỆN ===
-        # Tạo subplot cho giá và volume
-        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(14, 10), gridspec_kw={'height_ratios': [3, 1]})
-        
-        # Biểu đồ giá
-        ax1.plot(df['time'], df['close'], label='Giá đóng cửa', color='blue', linewidth=2)
-        ax1.scatter(df['time'], df['close'], color='red', s=20, alpha=0.6)
-        
-        # Thêm đường trung bình
-        ax1.axhline(y=avg_price, color='orange', linestyle='--', alpha=0.7, label=f'Trung bình: {format_vnd(avg_price)}₫')
-        
-        # Đánh dấu điểm cao nhất và thấp nhất
-        ax1.scatter(max_date, max_price, color='green', s=100, marker='^', label=f'Cao nhất: {format_vnd(max_price)}₫')
-        ax1.scatter(min_date, min_price, color='red', s=100, marker='v', label=f'Thấp nhất: {format_vnd(min_price)}₫')
-        
-        ax1.set_title(f'Lịch sử giá {symbol} ({start_str} - {end_str})', fontsize=14, fontweight='bold')
-        ax1.set_ylabel('Giá (VND)', fontsize=12)
-        ax1.grid(True, alpha=0.3)
-        ax1.legend()
-        ax1.tick_params(axis='x', rotation=45)
-        
-        # Biểu đồ volume (nếu có)
-        if 'volume' in df.columns:
-            ax2.bar(df['time'], df['volume'], alpha=0.6, color='gray')
-            ax2.set_ylabel('Khối lượng', fontsize=12)
-            ax2.set_xlabel('Ngày', fontsize=12)
-            ax2.grid(True, alpha=0.3)
-            ax2.tick_params(axis='x', rotation=45)
-        
-        plt.tight_layout()
+        # Improved chart
+        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(14, 10), gridspec_kw={'height_ratios': [3, 1]}, sharex=True)
+        # Close price line
+        ax1.plot(df['time'], df['close'], label='Close', color='navy', linewidth=2)
+        # Average price line
+        ax1.axhline(y=avg_price, color='orange', linestyle='--', linewidth=1.5, label=f'Average: {format_vnd(avg_price)}₫')
+        # High/Low markers
+        ax1.scatter(max_date, max_price, color='green', s=100, marker='^', label=f'High: {format_vnd(max_price)}₫')
+        ax1.scatter(min_date, min_price, color='red', s=100, marker='v', label=f'Low: {format_vnd(min_price)}₫')
+        # Grid, legend, title
+        ax1.grid(True, alpha=0.2)
+        ax1.legend(fontsize=10, loc='upper right')
+        ax1.set_title(f'Price History {symbol} ({start_str} - {end_str})', fontsize=16, fontweight='bold')
+        ax1.set_ylabel('Price (VND)', fontsize=12)
+        # Volume subplot
+        ax2.bar(df['time'], df['volume'], alpha=0.5, color='gray')
+        ax2.set_ylabel('Volume', fontsize=12)
+        ax2.set_xlabel('Date', fontsize=12)
+        ax2.grid(True, alpha=0.2)
+        # Format x-axis for date
+        fig.autofmt_xdate()
+        plt.tight_layout(h_pad=2)
         chart_path = f'/tmp/{symbol}_chart.png'
         plt.savefig(chart_path, dpi=300, bbox_inches='tight')
         plt.close()
-        
-        # Gửi biểu đồ
-        await update.message.reply_photo(photo=open(chart_path, 'rb'))
-        
-        # Gửi file CSV
+        # Định nghĩa csv_path trước khi sử dụng
         csv_path = f"/tmp/{symbol}_history.csv"
         df.to_csv(csv_path, index=False)
-        await update.message.reply_document(document=open(csv_path, 'rb'))
-        
-        # Dọn dẹp file
+        # Send chart image
+        try:
+            await update.message.reply_photo(photo=open(chart_path, 'rb'))
+        except Exception as e:
+            await update.message.reply_text(f"❌ Error sending chart image: {e}")
+        # Send CSV file
+        try:
+            await update.message.reply_document(document=open(csv_path, 'rb'))
+        except Exception as e:
+            await update.message.reply_text(f"❌ Error sending CSV file: {e}")
+        # Clean up files
         os.remove(csv_path)
         os.remove(chart_path)
         

@@ -6,7 +6,7 @@ async def market(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Thông tin thị trường"""
     try:
         from vnstock import Trading
-        trading = Trading(source='VCI')
+        trading = Trading(source='TCBS')
         
         # Lấy thông tin VN-Index và HNX-Index
         indices = trading.price_board(['VNINDEX', 'HNXINDEX'])

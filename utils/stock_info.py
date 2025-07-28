@@ -1,118 +1,96 @@
+import pandas as pd
 from utils.formatters import format_vnd
 
-def get_company_info(symbol):
-    """Lấy thông tin cơ bản của công ty"""
-    try:
-        from vnstock import Company
-        company = Company(symbol=symbol)
-        info = company.overview()
-        
-        if info.empty:
-            return None
-        
-        return info.iloc[0]
-    except:
-        return None
-
 async def get_full_stock_info(symbol, debug_raw=False, update=None):
-    """Lấy thông tin đầy đủ của cổ phiếu"""
     try:
-        from vnstock import Trading, Company
-        trading = Trading(source='VCI')
-        company = Company(symbol=symbol)
-        
-        # Lấy thông tin giá
+        from vnstock import Trading, Company, Listing
+        # Lấy thông tin giá hiện tại
+        trading = Trading(source='TCBS')
         price_data = trading.price_board([symbol])
-        
-        if price_data.empty:
-            return None, None
-        
-        price_info = price_data.iloc[0]
-        
-        # Lấy thông tin công ty
-        company_info = company.overview()
-        
-        if company_info.empty:
-            company_info = None
+        price_info = price_data.iloc[0] if not price_data.empty else None
+        # Lấy thông tin công ty tổng quan
+        company = Company(symbol=symbol)
+        overview = company.overview()
+        overview_info = overview.iloc[0] if not overview.empty else None
+        # Lấy thông tin cơ bản từ Listing
+        listing = Listing()
+        all_symbols = listing.all_symbols()
+        symbol_info = all_symbols[all_symbols['ticker'].str.upper() == symbol]
+        symbol_info = symbol_info.iloc[0] if not symbol_info.empty else None
+        # Lấy thông tin tài chính (nếu có)
+        try:
+            from vnstock import Finance
+            finance = Finance(source='vci', symbol=symbol)
+            financial_data = finance.ratio()
+            latest_fin = financial_data.iloc[0] if not financial_data.empty else None
+        except Exception:
+            latest_fin = None
+        # === Compose reply ===
+        reply = f"<b>📊 STOCK INFO: {symbol}</b>\n\n"
+        # --- Basic Info ---
+        reply += "<b>🏢 Basic Info:</b>\n"
+        if symbol_info is not None:
+            company_name = symbol_info.get('organ_name', 'N/A')
+            # Only 'ticker' and 'organ_name' are available from Listing().all_symbols()
+            if company_name: reply += f"🏢 Name: {company_name}\n"
+            reply += f"🏛️ Ticker: {symbol}\n"
         else:
-            company_info = company_info.iloc[0]
-        
-        # Tạo thông tin hiển thị (phiên bản ngắn gọn)
-        if price_info is not None and company_info is not None:
-            current_price = price_info.get(('match', 'match_price'), 'N/A')
-            ref_price = price_info.get(('match', 'reference_price'), 'N/A')
-            change = current_price - ref_price if current_price != 'N/A' and ref_price != 'N/A' else 0
-            pct_change = (change / ref_price * 100) if ref_price != 'N/A' and ref_price != 0 else 0
-            volume = price_info.get(('match', 'match_vol'), 'N/A')
-            high = price_info.get(('match', 'highest'), 'N/A')
-            low = price_info.get(('match', 'lowest'), 'N/A')
-            open_price = price_info.get(('match', 'open_price'), 'N/A')
-            total_volume = price_info.get(('match', 'accumulated_volume'), 'N/A')
-            
-            emoji = "🟢" if change >= 0 else "🔴"
-            
-            reply = f"📊 <b>THÔNG TIN {symbol}:</b>\n\n"
-            
-            # === THÔNG TIN GIÁ CHÍNH ===
-            reply += f"{emoji} <b>📈 GIÁ:</b>\n"
-            reply += f"💰 Hiện tại: {format_vnd(current_price)}₫\n"
-            reply += f"📈 Thay đổi: {format_vnd(change)} ({pct_change:+.2f}%)\n"
-            reply += f"🚪 Mở cửa: {format_vnd(open_price)}₫\n"
-            reply += f"📈 Cao nhất: {format_vnd(high)}₫\n"
-            reply += f"📉 Thấp nhất: {format_vnd(low)}₫\n"
-            reply += f"📊 KL hiện tại: {format_vnd(volume)} cổ\n"
-            reply += f"📊 KL tổng: {format_vnd(total_volume)} cổ\n\n"
-            
-            # === THÔNG TIN CÔNG TY ===
-            reply += "🏢 <b>📋 CÔNG TY:</b>\n"
-            reply += f"🆔 Mã số: {company_info.get('id', 'N/A')}\n"
-            reply += f"📊 Cổ phiếu: {format_vnd(company_info.get('issue_share', 'N/A'))} cổ\n"
-            reply += f"💰 Vốn điều lệ: {format_vnd(company_info.get('charter_capital', 'N/A'))}₫\n"
-            reply += f"🏭 Ngành: {company_info.get('icb_name2', 'N/A')}\n"
-            reply += f"🏭 Phân ngành: {company_info.get('icb_name3', 'N/A')}\n\n"
-            
-            # === THÔNG TIN GIAO DỊCH ===
-            reply += "💼 <b>💼 GIAO DỊCH:</b>\n"
-            reply += f"🏢 Sàn: {price_info.get(('listing', 'exchange'), 'N/A')}\n"
-            reply += f"📊 Loại: {price_info.get(('listing', 'stock_type'), 'N/A')}\n"
-            reply += f"📈 Trạng thái: {price_info.get(('listing', 'trading_status'), 'N/A')}\n"
-            reply += f"📅 Ngày giao dịch: {price_info.get(('listing', 'trading_date'), 'N/A')}\n\n"
-            
-            # === GIÁ TRẦN/SÀN ===
-            reply += "📊 <b>📊 GIÁ TRẦN/SÀN:</b>\n"
-            reply += f"📈 Trần: {format_vnd(price_info.get(('listing', 'ceiling'), 'N/A'))}₫\n"
-            reply += f"📉 Sàn: {format_vnd(price_info.get(('listing', 'floor'), 'N/A'))}₫\n\n"
-            
-            # === THÔNG TIN NƯỚC NGOÀI ===
-            foreign_buy = price_info.get(('match', 'foreign_buy_volume'), 'N/A')
-            foreign_sell = price_info.get(('match', 'foreign_sell_volume'), 'N/A')
-            if foreign_buy != 'N/A' or foreign_sell != 'N/A':
-                reply += "🌍 <b>🌍 NƯỚC NGOÀI:</b>\n"
-                reply += f"📊 Mua: {format_vnd(foreign_buy)} cổ\n"
-                reply += f"📊 Bán: {format_vnd(foreign_sell)} cổ\n\n"
-            
-            # === GIÁ KHỚP LỆNH ===
-            reply += "💱 <b>💱 GIÁ KHỚP LỆNH:</b>\n"
-            bid1 = price_info.get(('bid_ask', 'bid_1_price'), 'N/A')
-            ask1 = price_info.get(('bid_ask', 'ask_1_price'), 'N/A')
-            if bid1 != 'N/A' and ask1 != 'N/A':
-                reply += f"📊 Mua: {format_vnd(bid1)}₫\n"
-                reply += f"📊 Bán: {format_vnd(ask1)}₫\n\n"
-            
-            # === MÔ TẢ NGẮN GỌN ===
-            company_profile = company_info.get('company_profile', '')
-            if company_profile:
-                reply += "📝 <b>📝 MÔ TẢ:</b>\n"
-                # Giới hạn độ dài mô tả
-                if len(company_profile) > 300:
-                    reply += f"{company_profile[:300]}...\n\n"
-                else:
-                    reply += f"{company_profile}\n\n"
-            
-            return reply
+            reply += "N/A\n"
+        reply += "\n"
+        # --- Overview ---
+        reply += "<b>📊 Overview:</b>\n"
+        if overview_info is not None:
+            charter_capital = overview_info.get('charter_capital', 'N/A')
+            outstanding_share = overview_info.get('outstanding_share', 'N/A')
+            established_year = overview_info.get('established_year', 'N/A')
+            no_shareholders = overview_info.get('no_shareholders', 'N/A')
+            no_employees = overview_info.get('no_employees', 'N/A')
+            stock_rating = overview_info.get('stock_rating', 'N/A')
+            short_name = overview_info.get('short_name', 'N/A')
+            industry_id = overview_info.get('industry_id', 'N/A')
+            industry_id_v2 = overview_info.get('industry_id_v2', 'N/A')
+            if charter_capital: reply += f"💰 Charter capital: {format_vnd(charter_capital)}₫\n"
+            if outstanding_share: reply += f"📊 Outstanding shares: {outstanding_share}\n"
+            if established_year: reply += f"🏢 Established year: {established_year}\n"
+            if no_shareholders: reply += f"👥 Shareholders: {no_shareholders}\n"
+            if no_employees: reply += f"👨‍💼 Employees: {no_employees}\n"
+            if stock_rating: reply += f"⭐ Stock rating (TCBS): {stock_rating}/5\n"
+            if short_name: reply += f"🏷️ Short name: {short_name}\n"
+            if industry_id: reply += f"🏷️ Industry ID: {industry_id}\n"
+            if industry_id_v2: reply += f"🏷️ Industry ID v2: {industry_id_v2}\n"
         else:
-            return None
-        
+            reply += "N/A\n"
+        reply += "\n"
+        # --- Financial ---
+        reply += "<b>💰 Financial:</b>\n"
+        if latest_fin is not None:
+            pe = latest_fin.get(('Chỉ tiêu định giá', 'P/E'), None)
+            pb = latest_fin.get(('Chỉ tiêu định giá', 'P/B'), None)
+            roe = latest_fin.get(('Chỉ tiêu sinh lời', 'ROE (%)'), None)
+            eps = latest_fin.get(('Chỉ tiêu định giá', 'EPS (VND)'), None)
+            market_cap = latest_fin.get(('Chỉ tiêu định giá', 'Market Capital (Bn. VND)'), None)
+            if pe: reply += f"📊 P/E: {pe:.2f}\n"
+            if pb: reply += f"📊 P/B: {pb:.2f}\n"
+            if roe: reply += f"📊 ROE: {roe:.2f}%\n"
+            if eps: reply += f"📊 EPS: {format_vnd(eps)}₫\n"
+            if market_cap: reply += f"📊 Market Cap: {format_vnd(market_cap * 1_000_000_000)}₫\n"
+            reply += "\n<i>See /financial &lt;symbol&gt; for full financial details.</i>\n"
+        else:
+            reply += "N/A\n"
+        reply += "\n"
+        # --- Realtime Trading ---
+        reply += "<b>📈 Realtime Trading:</b>\n"
+        if price_info is not None:
+            current_price = price_info.get('Giá', 'N/A')
+            volume = price_info.get('KLGD ròng(CM)', 'N/A')
+            high = price_info.get('Đỉnh 1Y', 'N/A')
+            low = price_info.get('Đáy 1Y', 'N/A')
+            reply += f"💰 Price: {format_vnd(current_price)}₫\n"
+            reply += f"📊 Volume: {format_vnd(volume)}\n"
+            reply += f"⬆️ High 1Y: {format_vnd(high)}₫ | ⬇️ Low 1Y: {format_vnd(low)}₫\n"
+        else:
+            reply += "N/A\n"
+        return reply
     except Exception as e:
         if debug_raw and update:
             await update.message.reply_text(f"Debug error: {e}")

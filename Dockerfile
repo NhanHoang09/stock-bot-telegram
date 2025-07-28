@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y \
     libfreetype6-dev \
     libpng-dev \
     libjpeg-dev \
+    git \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements trước để tận dụng Docker cache

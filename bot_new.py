@@ -1,6 +1,9 @@
 import os
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler
 from dotenv import load_dotenv
+import pandas as pd
+import pandas_ta as pta
+# from vnstock import stock_historical_data  # Bản vnstock hiện tại không hỗ trợ hàm này, hãy dùng class Vnstock nếu cần lấy dữ liệu lịch sử
 
 # Load environment variables
 load_dotenv()
@@ -14,7 +17,7 @@ from commands.stock.etf import etf
 from commands.stock.history import history
 from commands.stock.realtime import realtime
 from commands.stock.financial import financial
-from commands.stock.company import company
+# from commands.stock.company import company  # Removed: merged into /stock info
 from commands.market.market import market
 from commands.market.top import top
 from commands.market.sector import sector
@@ -23,6 +26,7 @@ from commands.funds.funds import funds, fund_detail, fund_performance, fund_comp
 from commands.news.news import news, news_stock, market_news, events, calendar, announcements
 from commands.filter.filter import filter_pe, filter_roe, filter_market_cap, filter_volume, filter_price, filter_sector, screener
 from commands.analysis.commodities import gold, metals, commodities
+from commands.analysis.technical_analysis import get_technical_summary, ta_technical
 
 def main():
     """Khởi tạo và chạy bot"""
@@ -41,7 +45,6 @@ def main():
     app.add_handler(CommandHandler("history", history))
     app.add_handler(CommandHandler("realtime", realtime))
     app.add_handler(CommandHandler("financial", financial))
-    app.add_handler(CommandHandler("company", company))
     
     # Market commands
     app.add_handler(CommandHandler("market", market))
@@ -84,6 +87,8 @@ def main():
     app.add_handler(CommandHandler("gold", gold))
     app.add_handler(CommandHandler("metals", metals))
     app.add_handler(CommandHandler("commodities", commodities))
+    # Technical analysis command
+    app.add_handler(CommandHandler("ta_technical", ta_technical))
     
     print("🤖 Bot đang khởi động...")
     print("📊 Stock Bot với 38 commands đã sẵn sàng!")

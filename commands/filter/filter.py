@@ -186,7 +186,7 @@ async def filter_volume(update: Update, context: ContextTypes.DEFAULT_TYPE):
         limit = int(context.args[1]) if len(context.args) > 1 else 20
         
         from vnstock import Trading
-        trading = Trading(source='VCI')
+        trading = Trading(source='TCBS')
         
         # Lấy tất cả cổ phiếu có khối lượng > min_volume
         all_prices = trading.price_board()
@@ -244,7 +244,7 @@ async def filter_price(update: Update, context: ContextTypes.DEFAULT_TYPE):
         limit = int(context.args[2]) if len(context.args) > 2 else 20
         
         from vnstock import Trading
-        trading = Trading(source='VCI')
+        trading = Trading(source='TCBS')
         all_prices = trading.price_board()
         
         filtered_stocks = []
@@ -314,7 +314,7 @@ async def filter_sector(update: Update, context: ContextTypes.DEFAULT_TYPE):
         
         # Lấy thông tin giá cho các cổ phiếu trong ngành
         from vnstock import Trading
-        trading = Trading(source='VCI')
+        trading = Trading(source='TCBS')
         
         sector_symbols = sector_stocks['symbol'].tolist()
         prices = trading.price_board(sector_symbols)
@@ -363,7 +363,7 @@ async def screener(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Bộ lọc cổ phiếu tổng hợp"""
     try:
         from vnstock import Trading, Listing
-        trading = Trading(source='VCI')
+        trading = Trading(source='TCBS')
         listing = Listing()
         
         reply = "🔍 <b>BỘ LỌC CỔ PHIẾU TỔNG HỢP:</b>\n\n"

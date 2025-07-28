@@ -13,7 +13,7 @@ async def top(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     try:
         from vnstock import Trading
-        trading = Trading(source='VCI')
+        trading = Trading(source='TCBS')
         
         if criteria in ['gainers', 'losers']:
             data = trading.top_mover(criteria, limit=limit)

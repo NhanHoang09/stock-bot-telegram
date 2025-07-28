@@ -6,47 +6,47 @@
         <mxCell id="1" parent="0" />
         
         <!-- Title -->
-        <mxCell id="title" value="📈 Stock Bot System Architecture" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1;fontColor=#1f4e79;" vertex="1" parent="1">
+        <mxCell id="title" value="Stock Bot System Architecture" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1;fontColor=#1f4e79;" vertex="1" parent="1">
           <mxGeometry x="400" y="20" width="350" height="40" as="geometry" />
         </mxCell>
         
         <!-- User Layer -->
-        <mxCell id="user" value="👤 User" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+        <mxCell id="user" value="User" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;fontStyle=1;" vertex="1" parent="1">
           <mxGeometry x="50" y="100" width="120" height="60" as="geometry" />
         </mxCell>
         
         <!-- Telegram Platform -->
-        <mxCell id="telegram" value="📱 Telegram Platform&#xa;&#xa;• Telegram Bot API&#xa;• Message Handling&#xa;• User Management" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="telegram" value="Telegram Platform&#xa;&#xa;• Telegram Bot API&#xa;• Message Handling&#xa;• User Management" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
           <mxGeometry x="250" y="80" width="200" height="100" as="geometry" />
         </mxCell>
         
         <!-- Stock Bot Application -->
-        <mxCell id="bot-app" value="🤖 Stock Bot Application&#xa;&#xa;• Python Telegram Bot&#xa;• Command Handler&#xa;• Loading Animation&#xa;• Error Handling" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="bot-app" value="Stock Bot Application&#xa;&#xa;• Python Telegram Bot&#xa;• Command Handler&#xa;• Loading Animation&#xa;• Error Handling" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
           <mxGeometry x="500" y="80" width="200" height="100" as="geometry" />
         </mxCell>
         
         <!-- Database -->
-        <mxCell id="database" value="🗄️ Database&#xa;&#xa;• SQLite Database&#xa;• User Records&#xa;• Stock Price History&#xa;• Transaction Logs" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="database" value="Database&#xa;&#xa;• SQLite Database&#xa;• User Records&#xa;• Stock Price History&#xa;• Transaction Logs" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
           <mxGeometry x="750" y="80" width="200" height="100" as="geometry" />
         </mxCell>
         
         <!-- External APIs -->
-        <mxCell id="vnstock-api" value="📊 VNStock API&#xa;&#xa;• Real-time Stock Data&#xa;• Company Information&#xa;• Financial Ratios&#xa;• Trading Data" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="vnstock-api" value="VNStock API&#xa;&#xa;• Real-time Stock Data&#xa;• Company Information&#xa;• Financial Ratios&#xa;• Trading Data" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1">
           <mxGeometry x="500" y="220" width="200" height="100" as="geometry" />
         </mxCell>
         
         <!-- Docker Container -->
-        <mxCell id="docker" value="🐳 Docker Container&#xa;&#xa;• Containerized App&#xa;• Environment Isolation&#xa;• Easy Deployment&#xa;• Scalability" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=12;dashed=1;" vertex="1" parent="1">
+        <mxCell id="docker" value="Docker Container&#xa;&#xa;• Containerized App&#xa;• Environment Isolation&#xa;• Easy Deployment&#xa;• Scalability" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=12;dashed=1;" vertex="1" parent="1">
           <mxGeometry x="250" y="220" width="200" height="100" as="geometry" />
         </mxCell>
         
         <!-- Commands Module -->
-        <mxCell id="commands" value="📋 Commands Module&#xa;&#xa;• /company - Company Info&#xa;• /stock - Stock Price&#xa;• /financial - Financial Data&#xa;• /help - Help Guide" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6f3ff;strokeColor=#007acc;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="commands" value="Commands Module&#xa;&#xa;• /company - Company Info&#xa;• /stock - Stock Price&#xa;• /financial - Financial Data&#xa;• /help - Help Guide" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6f3ff;strokeColor=#007acc;fontSize=12;" vertex="1" parent="1">
           <mxGeometry x="50" y="220" width="200" height="100" as="geometry" />
         </mxCell>
         
         <!-- Utils Module -->
-        <mxCell id="utils" value="🛠️ Utils Module&#xa;&#xa;• Loading Animation&#xa;• Data Formatters&#xa;• Stock Info Helpers&#xa;• Error Handlers" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="utils" value="Utils Module&#xa;&#xa;• Loading Animation&#xa;• Data Formatters&#xa;• Stock Info Helpers&#xa;• Error Handlers" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="1">
           <mxGeometry x="750" y="220" width="200" height="100" as="geometry" />
         </mxCell>
         
@@ -94,44 +94,44 @@
         </mxCell>
         
         <!-- Data Sources -->
-        <mxCell id="data-sources" value="📡 Data Sources" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;fontColor=#1f4e79;" vertex="1" parent="1">
+        <mxCell id="data-sources" value="Data Sources" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;fontColor=#1f4e79;" vertex="1" parent="1">
           <mxGeometry x="50" y="360" width="200" height="30" as="geometry" />
         </mxCell>
         
-        <mxCell id="hose" value="🏢 HOSE&#xa;Ho Chi Minh Stock Exchange&#xa;• VNM, VIC, VHM&#xa;• Large-cap stocks" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="hose" value="HOSE&#xa;Ho Chi Minh Stock Exchange&#xa;• VNM, VIC, VHM&#xa;• Large-cap stocks" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="50" y="400" width="150" height="80" as="geometry" />
         </mxCell>
         
-        <mxCell id="hnx" value="🏢 HNX&#xa;Hanoi Stock Exchange&#xa;• SHB, VND, SHS&#xa;• Mid-cap stocks" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="hnx" value="HNX&#xa;Hanoi Stock Exchange&#xa;• SHB, VND, SHS&#xa;• Mid-cap stocks" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="220" y="400" width="150" height="80" as="geometry" />
         </mxCell>
         
-        <mxCell id="upcom" value="🏢 UPCOM&#xa;Unlisted Public Company Market&#xa;• Small-cap stocks&#xa;• Growth companies" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="upcom" value="UPCOM&#xa;Unlisted Public Company Market&#xa;• Small-cap stocks&#xa;• Growth companies" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="390" y="400" width="150" height="80" as="geometry" />
         </mxCell>
         
-        <mxCell id="vci" value="🏢 VCI&#xa;Vietcombank Securities&#xa;• Real-time data&#xa;• Market depth" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="vci" value="VCI&#xa;Vietcombank Securities&#xa;• Real-time data&#xa;• Market depth" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="560" y="400" width="150" height="80" as="geometry" />
         </mxCell>
         
         <!-- Features Section -->
-        <mxCell id="features-title" value="✨ Bot Features" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;fontColor=#1f4e79;" vertex="1" parent="1">
+        <mxCell id="features-title" value="Bot Features" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;fontColor=#1f4e79;" vertex="1" parent="1">
           <mxGeometry x="750" y="360" width="200" height="30" as="geometry" />
         </mxCell>
         
-        <mxCell id="feature1" value="📊 Company Info&#xa;• Basic information&#xa;• Overview data&#xa;• Financial ratios&#xa;• Trading data" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="feature1" value="Company Info&#xa;• Basic information&#xa;• Overview data&#xa;• Financial ratios&#xa;• Trading data" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="750" y="400" width="150" height="80" as="geometry" />
         </mxCell>
         
-        <mxCell id="feature2" value="💹 Stock Price&#xa;• Real-time price&#xa;• Price change&#xa;• Volume data&#xa;• Historical data" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="feature2" value="Stock Price&#xa;• Real-time price&#xa;• Price change&#xa;• Volume data&#xa;• Historical data" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="920" y="400" width="150" height="80" as="geometry" />
         </mxCell>
         
-        <mxCell id="feature3" value="💰 Financial Data&#xa;• P/E, P/B ratios&#xa;• Income statement&#xa;• Balance sheet&#xa;• Cash flow" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="feature3" value="Financial Data&#xa;• P/E, P/B ratios&#xa;• Income statement&#xa;• Balance sheet&#xa;• Cash flow" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="750" y="500" width="150" height="80" as="geometry" />
         </mxCell>
         
-        <mxCell id="feature4" value="🎨 Loading Animation&#xa;• Spinner emoji&#xa;• Themed animations&#xa;• Real-time updates&#xa;• Progress feedback" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="feature4" value="Loading Animation&#xa;• Spinner emoji&#xa;• Themed animations&#xa;• Real-time updates&#xa;• Progress feedback" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="920" y="500" width="150" height="80" as="geometry" />
         </mxCell>
         
@@ -165,73 +165,73 @@
         </mxCell>
         
         <!-- Legend -->
-        <mxCell id="legend" value="📋 Legend" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#1f4e79;" vertex="1" parent="1">
+        <mxCell id="legend" value="Legend" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#1f4e79;" vertex="1" parent="1">
           <mxGeometry x="50" y="600" width="100" height="30" as="geometry" />
         </mxCell>
         
-        <mxCell id="legend1" value="🔵 Data Flow" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#1f4e79;" vertex="1" parent="1">
+        <mxCell id="legend1" value="Blue: Data Flow" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#1f4e79;" vertex="1" parent="1">
           <mxGeometry x="50" y="640" width="100" height="20" as="geometry" />
         </mxCell>
         
-        <mxCell id="legend2" value="🟢 Data Sources" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#82b366;" vertex="1" parent="1">
+        <mxCell id="legend2" value="Green: Data Sources" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#82b366;" vertex="1" parent="1">
           <mxGeometry x="50" y="660" width="100" height="20" as="geometry" />
         </mxCell>
         
-        <mxCell id="legend3" value="🟡 Core Components" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#d6b656;" vertex="1" parent="1">
+        <mxCell id="legend3" value="Yellow: Core Components" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#d6b656;" vertex="1" parent="1">
           <mxGeometry x="50" y="680" width="120" height="20" as="geometry" />
         </mxCell>
         
-        <mxCell id="legend4" value="🟣 User Interface" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#9673a6;" vertex="1" parent="1">
+        <mxCell id="legend4" value="Purple: User Interface" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#9673a6;" vertex="1" parent="1">
           <mxGeometry x="50" y="700" width="100" height="20" as="geometry" />
         </mxCell>
         
         <!-- Technical Stack -->
-        <mxCell id="tech-stack" value="🛠️ Technical Stack" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#1f4e79;" vertex="1" parent="1">
+        <mxCell id="tech-stack" value="Technical Stack" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#1f4e79;" vertex="1" parent="1">
           <mxGeometry x="300" y="600" width="150" height="30" as="geometry" />
         </mxCell>
         
-        <mxCell id="tech1" value="🐍 Python 3.8+" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="tech1" value="Python 3.8+" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
           <mxGeometry x="300" y="640" width="120" height="20" as="geometry" />
         </mxCell>
         
-        <mxCell id="tech2" value="🤖 python-telegram-bot" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="tech2" value="python-telegram-bot" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
           <mxGeometry x="300" y="660" width="150" height="20" as="geometry" />
         </mxCell>
         
-        <mxCell id="tech3" value="📊 vnstock library" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="tech3" value="vnstock library" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
           <mxGeometry x="300" y="680" width="120" height="20" as="geometry" />
         </mxCell>
         
-        <mxCell id="tech4" value="🗄️ SQLAlchemy ORM" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="tech4" value="SQLAlchemy ORM" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
           <mxGeometry x="300" y="700" width="120" height="20" as="geometry" />
         </mxCell>
         
-        <mxCell id="tech5" value="🐳 Docker & Docker Compose" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="tech5" value="Docker &amp; Docker Compose" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
           <mxGeometry x="300" y="720" width="180" height="20" as="geometry" />
         </mxCell>
         
         <!-- Performance Metrics -->
-        <mxCell id="metrics" value="📈 Performance Metrics" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#1f4e79;" vertex="1" parent="1">
+        <mxCell id="metrics" value="Performance Metrics" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#1f4e79;" vertex="1" parent="1">
           <mxGeometry x="600" y="600" width="180" height="30" as="geometry" />
         </mxCell>
         
-        <mxCell id="metric1" value="⚡ Response Time: &lt; 3s" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="metric1" value="Response Time: &lt; 3s" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
           <mxGeometry x="600" y="640" width="150" height="20" as="geometry" />
         </mxCell>
         
-        <mxCell id="metric2" value="🔄 Real-time Data Updates" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="metric2" value="Real-time Data Updates" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
           <mxGeometry x="600" y="660" width="170" height="20" as="geometry" />
         </mxCell>
         
-        <mxCell id="metric3" value="📊 1000+ Stock Symbols" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="metric3" value="1000+ Stock Symbols" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
           <mxGeometry x="600" y="680" width="150" height="20" as="geometry" />
         </mxCell>
         
-        <mxCell id="metric4" value="🎨 Animated Loading UI" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="metric4" value="Animated Loading UI" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
           <mxGeometry x="600" y="700" width="150" height="20" as="geometry" />
         </mxCell>
         
-        <mxCell id="metric5" value="🐳 Containerized Deployment" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="metric5" value="Containerized Deployment" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
           <mxGeometry x="600" y="720" width="170" height="20" as="geometry" />
         </mxCell>
         

@@ -8,7 +8,7 @@ async def index(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Chỉ số thị trường trong nước"""
     try:
         from vnstock import Trading
-        trading = Trading(source='VCI')
+        trading = Trading(source='TCBS')
         
         # Lấy thông tin các chỉ số chính
         indices = ['VNINDEX', 'HNXINDEX', 'UPCOMINDEX']
@@ -77,7 +77,7 @@ async def index_detail(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
         index_name = context.args[0].upper()
         from vnstock import Trading
-        trading = Trading(source='VCI')
+        trading = Trading(source='TCBS')
         
         # Lấy dữ liệu chỉ số
         index_data = trading.price_board([index_name])
@@ -156,7 +156,7 @@ async def index_history(update: Update, context: ContextTypes.DEFAULT_TYPE):
         days = int(context.args[1]) if len(context.args) > 1 else 30
         
         from vnstock import Vnstock
-        stock = Vnstock().stock(symbol=index_name, source='VCI')
+        stock = Vnstock().stock(symbol=index_name, source='TCBS')
         
         # Tính ngày bắt đầu
         from datetime import datetime, timedelta
@@ -230,7 +230,7 @@ async def index_compare(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
         indices = [idx.upper() for idx in context.args]
         from vnstock import Trading
-        trading = Trading(source='VCI')
+        trading = Trading(source='TCBS')
         
         # Lấy dữ liệu các chỉ số
         index_data = trading.price_board(indices)
@@ -305,7 +305,7 @@ async def index_sector(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Chỉ số ngành và phân tích sector"""
     try:
         from vnstock import Trading
-        trading = Trading(source='VCI')
+        trading = Trading(source='TCBS')
         
         # Các chỉ số ngành chính
         sector_indices = [

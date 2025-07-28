@@ -6,7 +6,7 @@ async def gold(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Giá vàng trong nước và thế giới"""
     try:
         from vnstock import Trading
-        trading = Trading(source='VCI')
+        trading = Trading(source='TCBS')
         
         # Lấy giá vàng từ các mã vàng phổ biến
         gold_symbols = ['SJC', 'PNJ', 'BVH']  # Các mã liên quan đến vàng
@@ -57,7 +57,7 @@ async def metals(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Kim loại quý và nguyên liệu"""
     try:
         from vnstock import Trading
-        trading = Trading(source='VCI')
+        trading = Trading(source='TCBS')
         
         # Lấy thông tin các công ty khai thác kim loại
         metal_symbols = ['HPG', 'HSG', 'TVN', 'TLH', 'KSB']  # Thép, kim loại
@@ -103,7 +103,7 @@ async def commodities(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Hàng hóa và nguyên liệu cơ bản"""
     try:
         from vnstock import Trading
-        trading = Trading(source='VCI')
+        trading = Trading(source='TCBS')
         
         # Lấy thông tin các công ty nông nghiệp, thực phẩm
         commodity_symbols = ['VNM', 'FPT', 'VIC', 'HPG', 'GAS']  # Đa dạng hàng hóa

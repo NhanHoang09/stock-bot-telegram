@@ -146,4 +146,100 @@ token.txt
 
 # Backup files
 *.bak
-*.backup 
+*.backup
+
+# Stock Bot specific files
+cache/
+charts/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.csv
+*.xlsx
+*.xls
+/tmp/
+*.chart.png
+*_history.csv
+*_chart.png
+overview_log.txt
+debug_*.txt
+*.debug
+
+# Docker volumes and data
+docker-data/
+postgres-data/
+redis-data/
+
+# Telegram bot specific
+bot_token.txt
+telegram_config.json
+
+# API keys and secrets
+api_keys.json
+secrets/
+.env.local
+.env.production
+
+# Matplotlib cache
+.matplotlib/
+
+# Pandas cache
+.pandas_cache/
+
+# Jupyter cache
+.jupyter/
+
+# Coverage reports
+htmlcov/
+.coverage
+coverage.xml
+
+# Test files
+test_*.py
+*_test.py
+tests/
+
+# Documentation build
+docs/build/
+docs/_build/
+
+# Local development files
+local_*.py
+dev_*.py
+*_local.py
+
+# Migration files (if using ORM)
+migrations/versions/
+*.migration
+
+# Cache directories
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+
+# IDE specific
+.vscode/settings.json
+.vscode/launch.json
+.idea/workspace.xml
+.idea/tasks.xml
+
+# OS specific
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary and build files
+build/
+dist/
+*.egg-info/
+*.tar.gz
+*.zip
+
+# Environment and config
+.env.*
+!.env.example
+config.local.py
+settings.local.py 
