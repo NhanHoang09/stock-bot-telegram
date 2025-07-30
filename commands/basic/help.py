@@ -195,9 +195,12 @@ async def show_stock_help(query):
 
 📊 <b>ETF:</b>
 
-🔹 <b>/etf</b> - List ETF
-🔹 <b>/etf &lt;symbol&gt;</b> - ETF price
-🔹 <b>/etf info &lt;symbol&gt;</b> - ETF info
+🔹 <b>/etf [symbol]</b>
+  ETF information and price lookup
+  <b>Usage:</b>
+  • <code>/etf</code> - Show list of popular ETFs
+  • <code>/etf FUEVFVND</code> - Get current ETF price
+  • <code>/etf info FUEVFVND</code> - Get detailed ETF information
 """
     
     await query.edit_message_text(text, parse_mode='HTML', reply_markup=reply_markup)
