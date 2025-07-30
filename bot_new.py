@@ -27,6 +27,8 @@ from commands.news.news import news, news_stock, market_news, events, calendar, 
 from commands.filter.filter import filter_pe, filter_roe, filter_market_cap, filter_volume, filter_price, filter_sector, screener
 from commands.analysis.commodities import gold, metals, commodities
 from commands.analysis.technical_analysis import get_technical_summary, ta_technical
+from commands.analysis.analysis import analysis
+from commands.analysis.compare import compare
 
 def main():
     """Khởi tạo và chạy bot"""
@@ -89,9 +91,13 @@ def main():
     app.add_handler(CommandHandler("commodities", commodities))
     # Technical analysis command
     app.add_handler(CommandHandler("ta_technical", ta_technical))
+    # Analysis command
+    app.add_handler(CommandHandler("analysis", analysis))
+    # Compare command
+    app.add_handler(CommandHandler("compare", compare))
     
     print("🤖 Bot đang khởi động...")
-    print("📊 Stock Bot với 38 commands đã sẵn sàng!")
+    print("📊 Stock Bot với 40 commands đã sẵn sàng!")
     print("🔗 Liên hệ: @nhanhoang09")
     
     app.run_polling()

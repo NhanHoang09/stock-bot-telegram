@@ -108,13 +108,13 @@ async def update_loading_with_money_animation(loading_msg, base_message: str, st
     except Exception as e:
         print(f"Error updating money animated loading: {e}")
 
-async def finish_loading(loading_msg, final_message: str):
+async def finish_loading(loading_msg, final_message: str, parse_mode: str = 'HTML'):
     """Finish loading and show final result"""
     try:
         completion_emoji = "✅"
         final_with_emoji = f"{completion_emoji} {final_message}"
         if loading_msg is not None:
-            await loading_msg.edit_text(final_with_emoji, parse_mode='HTML')
+            await loading_msg.edit_text(final_with_emoji, parse_mode=parse_mode)
         else:
             pass
     except Exception as e:

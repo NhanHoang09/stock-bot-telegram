@@ -61,23 +61,6 @@ async def get_full_stock_info(symbol, debug_raw=False, update=None):
         else:
             reply += "N/A\n"
         reply += "\n"
-        # --- Financial ---
-        reply += "<b>💰 Financial:</b>\n"
-        if latest_fin is not None:
-            pe = latest_fin.get(('Chỉ tiêu định giá', 'P/E'), None)
-            pb = latest_fin.get(('Chỉ tiêu định giá', 'P/B'), None)
-            roe = latest_fin.get(('Chỉ tiêu sinh lời', 'ROE (%)'), None)
-            eps = latest_fin.get(('Chỉ tiêu định giá', 'EPS (VND)'), None)
-            market_cap = latest_fin.get(('Chỉ tiêu định giá', 'Market Capital (Bn. VND)'), None)
-            if pe: reply += f"📊 P/E: {pe:.2f}\n"
-            if pb: reply += f"📊 P/B: {pb:.2f}\n"
-            if roe: reply += f"📊 ROE: {roe:.2f}%\n"
-            if eps: reply += f"📊 EPS: {format_vnd(eps)}₫\n"
-            if market_cap: reply += f"📊 Market Cap: {format_vnd(market_cap * 1_000_000_000)}₫\n"
-            reply += "\n<i>See /financial &lt;symbol&gt; for full financial details.</i>\n"
-        else:
-            reply += "N/A\n"
-        reply += "\n"
         # --- Realtime Trading ---
         reply += "<b>📈 Realtime Trading:</b>\n"
         if price_info is not None:

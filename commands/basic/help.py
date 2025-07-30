@@ -167,6 +167,32 @@ async def show_stock_help(query):
    Financial ratios (P/E, ROE...)
    Example: <code>/financial VNM</code>
 
+🔹 <b>/analysis &lt;symbol&gt; [start_date] [end_date]</b>
+   Comprehensive stock analysis with valuation, growth, risk assessment
+   <b>Usage:</b>
+   • <code>/analysis VNM</code> - Analyze last 1 year
+   • <code>/analysis VNM 2023-01-01 2024-12-31</code> - Custom period
+   • <code>/analysis VNM 2024-01-01</code> - From date to today
+   
+   <b>Includes:</b>
+   • Valuation Analysis: P/E, P/B, ROE, PEG ratio with ratings
+   • Growth Analysis: Revenue & profit growth with quality assessment
+   • Risk Analysis: Debt, liquidity, interest coverage
+   • Technical Analysis: Price position, volatility
+   • Recommendation: Buy/Hold/Sell with confidence score
+
+🔹 <b>/compare &lt;symbol1&gt; &lt;symbol2&gt;</b>
+   Compare two stocks side-by-side
+   Example: <code>/compare VNM FPT</code>
+   
+   <b>Includes:</b>
+   • Price Comparison: Current prices and difference
+   • Valuation Comparison: P/E, P/B, ROE, EPS
+   • Growth Comparison: Revenue & profit growth
+   • Risk Comparison: Debt, liquidity, interest coverage
+   • Dividend Comparison: Dividend yields
+   • Winner Recommendation: Based on scoring system
+
 📊 <b>ETF:</b>
 
 🔹 <b>/etf</b> - List ETF
